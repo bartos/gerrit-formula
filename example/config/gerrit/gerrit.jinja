@@ -1,0 +1,23 @@
+{% from "gerrit/map.jinja" import gerrit_settings with context -%}
+[gerrit]
+	basePath = git
+	canonicalWebUrl = http://bdrozd01-VirtualBox:8080/
+[database]
+	type = h2
+	database = db/ReviewDB
+[index]
+	type = LUCENE
+[auth]
+	type = OPENID
+[sendemail]
+	smtpServer = localhost
+[container]
+	user = gerrit2
+	javaHome = /usr/lib/jvm/java-7-openjdk-amd64/jre
+[sshd]
+	listenAddress = *:29418
+[httpd]
+	listenUrl = http://*:{{ gerrit_settings.port }}/
+[cache]
+	directory = cache
+
