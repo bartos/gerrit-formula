@@ -25,3 +25,23 @@ Testing
 =======
 
 Not yet done.
+
+Gerrit config customization
+===========================
+
+A configuration file is added as a file.managed.
+It should be a jinja template file.
+
+add  
+  {% from "gerrit/map.jinja" import gerrit_settings with context -%}
+
+in the headear, and then use:
+
+[httpd]
+  listenUrl = http://*:{{ gerrit_settings.port }}/
+
+
+in your /config/gerrit/gerrit.jinja
+
+
+
