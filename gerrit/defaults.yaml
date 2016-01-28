@@ -6,6 +6,7 @@ gerrit:
   site_directory: gerrit-site
   user: gerrit2
   group: gerrit2
+  port: 8080
   
   install:
     base_url: https://gerrit-releases.storage.googleapis.com
@@ -13,4 +14,3 @@ gerrit:
 
   service:
     name: gerrit
-

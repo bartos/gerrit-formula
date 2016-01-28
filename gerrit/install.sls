@@ -26,7 +26,7 @@ gerrit-directory:
 
 gerrit-download:
   cmd.run:
-    - timeout: 600
+    - timeout: 1600
     - name: curl -O -s {{ gerrit_settings.install.base_url }}/{{ gerrit_war_file }}
     - user: {{ gerrit_settings.user }}
     - group: {{ gerrit_settings.group }}
@@ -56,6 +56,12 @@ gerrit-init:
     - group: {{ gerrit_settings.group }}
     - cwd: {{ gerrit_settings.base_directory }}
     - unless: test -d {{ gerrit_settings.base_directory }}/{{ gerrit_settings.site_directory }}/bin
+
+gerrit-copy-config:
+  file.managed:
+    - source: salt://config/gerrit/gerrit.jinja
+    - template: jinja
+    - name: {{ gerrit_settings.base_directory }}/{{ gerrit_settings.site_directory }}/etc/gerrit.config
 
 gerrit-service:
   service.running:
