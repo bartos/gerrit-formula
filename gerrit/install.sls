@@ -26,6 +26,7 @@ gerrit-directory:
 
 gerrit-download:
   cmd.run:
+    - timeout: 600
     - name: curl -O -s {{ gerrit_settings.install.base_url }}/{{ gerrit_war_file }}
     - user: {{ gerrit_settings.user }}
     - group: {{ gerrit_settings.group }}
