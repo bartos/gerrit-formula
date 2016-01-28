@@ -29,19 +29,21 @@ Not yet done.
 Gerrit config customization
 ===========================
 
-A configuration file is added as a file.managed.
-It should be a jinja template file.
+A configuration file is added as a file.managed in id: gerrit-copy-config in install.sls.
+Config file should be a jinja template since we take a pillar with port number and put it into the final gerrit.config
 
-add  
-  {% from "gerrit/map.jinja" import gerrit_settings with context -%}
+Example gerrit.jinja is placed in example dirrectory.
+Note that there is a jinja import in the header:
+  
+    {% from "gerrit/map.jinja" import gerrit_settings with context -%}
 
-in the headear, and then use:
+then, we can use port defined in pillar/gerrit.sls
 
-[httpd]
-  listenUrl = http://*:{{ gerrit_settings.port }}/
+    [httpd]
+          listenUrl = http://*:{{ gerrit_settings.port }}/
 
 
-in your /config/gerrit/gerrit.jinja
+
 
 
 
